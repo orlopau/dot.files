@@ -102,3 +102,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias n="nnn"
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
