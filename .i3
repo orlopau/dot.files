@@ -201,7 +201,8 @@ bindsym $mod+d exec dmenu_run -l 100 -fn "Nokto Sans 13" -nb "$bg-color" -nf "$t
 exec gnome-terminal
 exec chromium
 exec spotify
-
+exec ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
+exec compton
 exec nm-applet
 
 # Assigns
