@@ -430,3 +430,7 @@ exec compton
 for_window [class="Spotify"] move to workspace $ws8
 assign [class="Chromium"] $ws1
 assign [class="Gnome-terminal"] $ws2
+
+# Window monitor moving
+bindsym $mod+Shift+m move workspace to output right
+bindsym $mod+Shift+n move workspace to output left
