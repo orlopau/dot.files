@@ -104,3 +104,8 @@ source $ZSH/oh-my-zsh.sh
 alias n="nnn"
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
+
+ssh-start-agent(){
+  eval $(ssh-agent)
+  ssh-add
+}
