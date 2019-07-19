@@ -65,6 +65,7 @@ ZSH_THEME="agnoster"
 plugins=(
   git
   docker
+  docker-compose
   web-search
   extract
   z
