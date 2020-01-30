@@ -110,3 +110,26 @@ ssh-start-agent(){
   eval $(ssh-agent)
   ssh-add
 }
+
+function grepm {
+    grep --color -E "$1|$" $2
+}
+
+gdirexec(){
+    for d in */ ; do
+      echo "\e[91mExecuting git" "$@" "in $d..."
+      if [ -d "$d.git" ];
+      then
+          git -C "$d" "$@"
+      else
+          echo "Not a git directory! Not executing command!"
+      fi
+    done
+}
+
+alias gstdir=git-summary
+
+export NVM_SYMLINK_CURRENT=true
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
