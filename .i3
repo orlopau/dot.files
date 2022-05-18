@@ -27,7 +27,7 @@ font pango:Noto Sans 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -40,10 +40,10 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ################################################################################################
 
 exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -53,7 +53,7 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
+bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
@@ -269,7 +269,8 @@ bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+#exec --no-startup-id nitrogen --restore
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -279,7 +280,7 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+# exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
@@ -319,8 +320,6 @@ bar {
 	i3bar_command i3bar
 	status_command i3status
 	position bottom
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
 #	tray_output eDP1
 
@@ -413,24 +412,35 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-# Wallpaper 
-# exec_always feh --bg-scale --no-xinerama /home/paul/wallpaper.png
-
 # Dmenu
 bindsym $mod+d exec dmenu_run -l 100 -fn "Nokto Sans 13" -nb "#2B2C2B" -nf "#ffffff" 
 
-# Autostarts
-exec gnome-terminal
-exec chromium
-exec spotify
-exec ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
-exec compton
-
 # Assigns
 for_window [class="Spotify"] move to workspace $ws8
-assign [class="Chromium"] $ws1
-assign [class="Gnome-terminal"] $ws2
+#assign [class="Chromium"] $ws1
+#assign [class="Gnome-terminal"] $ws2
+#assign [class="code-oss"] $ws3
+
+# Autostarts
+exec xrandr --output DP-0 --mode 5120x1440
+#exec termite
+#exec chromium
+exec spotify
+exec ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
+exec redshift -O 2300K -P
+exec flameshot
 
 # Window monitor moving
 bindsym $mod+Shift+m move workspace to output right
 bindsym $mod+Shift+n move workspace to output left
+
+for_window [title=".*Emulator.*"] floating enable
+for_window [class="ArduPlane"] floating enable
+for_window [class="Mavproxy"] floating enable
+for_window [class="Mavproxy"] no_focus
+
+# don't steal focus
+focus_on_window_activation urgent
+
+# Wallpaper
+exec_always feh --bg-scale --no-xinerama /home/paul/Pictures/Wallpapers/HDRshooter-super-ultra-wide-wallpaper-011.jpg
